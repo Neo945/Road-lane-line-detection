@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+from direction import frame_processing
 
 import track
 import detect
@@ -44,8 +45,12 @@ def main(video_path):
 
         if lanes is not None:
             lt.update(lanes)
+        cv2.imshow('', frame_processing(frame))
 
-        cv2.imshow('', frame)
+        # frame = frame_processing(frame)
+        # cv2.imshow('', frame)
+
+
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
