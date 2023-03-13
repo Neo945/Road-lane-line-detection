@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from direction import frame_processing
+from direction import direction_processing
 
 import track
 import detect
@@ -12,14 +12,14 @@ def parse_args():
     parser.add_argument("--path", required=True, type=str, help="Video path")
     return parser.parse_args()
 
-
+lt = track.LaneTracker(2, 0.1, 500)
+ld = detect.LaneDetector(180)
+    
 def main(video_path):
     cap = cv2.VideoCapture(video_path)
 
     ticks = 0
 
-    lt = track.LaneTracker(2, 0.1, 500)
-    ld = detect.LaneDetector(180)
     while cap.isOpened():
         precTick = ticks
         ticks = cv2.getTickCount()
@@ -45,7 +45,7 @@ def main(video_path):
 
         if lanes is not None:
             lt.update(lanes)
-        cv2.imshow('', frame_processing(frame))
+        cv2.imshow('', direction_processing(frame))
 
         # frame = frame_processing(frame)
         # cv2.imshow('', frame)

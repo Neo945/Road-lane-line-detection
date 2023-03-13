@@ -115,7 +115,10 @@ def draw_lines(image, lines, color = [255, 0, 0], thickness = 2):
     image = np.copy(image)
     for line in lines:
         for x1,y1,x2,y2 in line:
-            cv2.line(image, (x1, y1), (x2, y2), color, thickness)
+            try:
+                cv2.line(image, (x1, y1), (x2, y2), color, thickness)
+            except:
+                pass
     return image
 
 # Changing the prespective of the region of interst got get the top view
@@ -194,7 +197,7 @@ def add_text(frame, image_center, left_x_base, right_x_base):
 
 
 
-def frame_processing(image):
+def direction_processing(image):
     # global frame_no
     # print(frame_no)
     color_select = HSL_color_selection(image)
