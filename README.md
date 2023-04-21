@@ -18,7 +18,7 @@ Pipeline architecture:
 
 I'll explain each step in details below.
 
-## **Environement:**
+## **Environment:**
 ---
 - Windows 7
 - Anaconda 4.3.29
